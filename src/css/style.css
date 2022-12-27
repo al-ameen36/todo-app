@@ -1,0 +1,285 @@
+body {
+  font: clamp(13px, 3vw, 18px) "Josefin Sans", sans-serif;
+  height: 100vh;
+  line-height: 1;
+}
+
+button {
+  background-color: transparent;
+  border: none;
+  color: inherit;
+  cursor: pointer;
+  transition: 200ms;
+}
+
+input[type=text] {
+  border: none;
+  color: inherit;
+  padding-block-start: 5px;
+  outline: none;
+  width: 90%;
+}
+
+img {
+  max-height: 1.25rem;
+}
+
+h1 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  letter-spacing: 10px;
+}
+
+label {
+  padding-block-start: 4px;
+  flex-shrink: 0;
+  max-width: 37ch;
+  word-break: break-word;
+}
+
+/* OTHER STYLING */
+#root {
+  height: 100%;
+  transition: 200ms;
+}
+
+.header_inner,
+main,
+footer {
+  max-width: 590px;
+  margin-inline: auto;
+  position: relative;
+}
+
+.header_inner,
+main,
+footer {
+  padding-inline: 1.5rem;
+}
+
+header {
+  background-position: right top;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding-block: 2.8rem;
+}
+
+.app_title {
+  color: hsl(0deg, 0%, 98%);
+  display: flex;
+  justify-content: space-between;
+}
+
+main {
+  margin-block-start: -2rem;
+  position: relative;
+}
+
+.todo_item.active {
+  outline: 1px solid hsl(280deg, 87%, 65%);
+}
+.todo_inputs, .todo_item, .todo_summary, .todo_filters {
+  padding-block: clamp(1rem, 3vw, 1.2rem);
+  padding-inline: 1.3rem;
+  transition: 200ms background-color;
+}
+.todo_list.empty p {
+  align-items: center;
+  border-radius: 0.3rem 0.3rem 0 0;
+  display: flex;
+  height: 61.38px;
+  justify-content: center;
+}
+.todo_inputs {
+  border-radius: 0.3rem;
+  display: flex;
+  align-items: center;
+  margin-block-start: 2rem;
+}
+.todo_item {
+  align-items: center;
+  display: flex;
+  cursor: move;
+}
+.todo_item:first-child {
+  border-radius: 0.3rem 0.3rem 0 0;
+}
+.todo_item:hover .delete_btn img {
+  opacity: 1;
+}
+.todo_text {
+  cursor: pointer;
+  display: inline-block;
+  margin-right: auto;
+}
+
+#todoItem-input {
+  transition: 200ms;
+}
+
+input[type=checkbox] {
+  visibility: hidden;
+  position: absolute;
+}
+input[type=checkbox] ~ .input_label {
+  border-radius: 50%;
+  cursor: pointer;
+  display: inline-block;
+  height: 22px;
+  margin-inline-end: clamp(0.75rem, 4vw, 1.5rem);
+  width: 22px;
+  position: relative;
+}
+input[type=checkbox] ~ .input_label:hover::after, input[type=checkbox]:checked ~ .input_label::after {
+  background: linear-gradient(145deg, hsl(192deg, 100%, 67%), hsl(280deg, 87%, 65%));
+}
+input[type=checkbox] ~ .input_label::after {
+  content: "";
+  border-radius: inherit;
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  background: hsl(233deg, 11%, 84%);
+  padding: 2px;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+input[type=checkbox]:checked ~ .input_label {
+  background-image: url(../images/icon-check.svg), linear-gradient(145deg, hsl(192deg, 100%, 67%), hsl(280deg, 87%, 65%));
+  background-repeat: no-repeat;
+  background-position: center;
+}
+input[type=checkbox]:checked ~ .todo_text {
+  text-decoration: line-through;
+}
+
+.delete_btn img {
+  max-height: 0.75rem;
+  opacity: 0;
+  transition: 200ms;
+}
+
+.todo_summary,
+.todo_filters {
+  font-size: clamp(13px, 3vw, 14px);
+}
+
+.todo_summary {
+  border-radius: 0 0 0.3rem 0.3rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.todo_filters {
+  border-radius: 0.3rem;
+  display: flex;
+  font-weight: 700;
+  gap: clamp(0.75rem, 3vw, 1rem);
+  justify-content: center;
+  margin-block-start: 1rem;
+}
+
+footer {
+  margin-block-start: 3rem;
+  text-align: center;
+}
+
+.light_theme {
+  background-color: hsl(0deg, 0%, 98%);
+  color: hsl(235deg, 19%, 35%);
+}
+.light_theme .app_title {
+  color: hsl(0deg, 0%, 98%);
+}
+.light_theme header {
+  background-image: url(../images/bg-mobile-light.jpg);
+}
+.light_theme input[type=checkbox]:checked ~ .todo_text {
+  color: hsl(236deg, 9%, 61%);
+}
+.light_theme .todo_list, .light_theme .todo_summary, .light_theme .todo_filters, .light_theme .todo_inputs {
+  box-shadow: 0 7px 10px rgba(120, 120, 120, 0.3);
+}
+.light_theme .todo_inputs, .light_theme .todo_item, .light_theme .todo_summary, .light_theme .todo_filters, .light_theme .todo_list.empty p {
+  background-color: #fff;
+}
+.light_theme .todo_inputs {
+  background-color: #fff;
+}
+.light_theme .todo_inputs input::placeholder {
+  color: hsl(235deg, 19%, 35%);
+}
+.light_theme .todo_item {
+  border-bottom: 1px solid hsl(233deg, 11%, 84%);
+}
+.light_theme .todo_summary {
+  color: hsl(236deg, 9%, 61%);
+}
+.light_theme .todo_summary button:hover {
+  color: hsl(235deg, 19%, 35%);
+}
+.light_theme .todo_filters .active {
+  color: hsl(220deg, 98%, 61%);
+}
+.light_theme .todo_filters button {
+  color: hsl(236deg, 9%, 61%);
+}
+.light_theme .todo_filters button:hover {
+  color: hsl(235deg, 19%, 35%);
+}
+
+.dark_theme {
+  background-color: hsl(235deg, 21%, 11%);
+  color: hsl(234deg, 39%, 85%);
+}
+.dark_theme header {
+  background-image: url(../images/bg-mobile-dark.jpg);
+}
+.dark_theme #todoItem-input {
+  background-color: hsl(235deg, 24%, 19%);
+}
+.dark_theme .todo_list, .dark_theme .todo_summary, .dark_theme .todo_filters, .dark_theme .todo_inputs {
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+.dark_theme .todo_inputs, .dark_theme .todo_item, .dark_theme .todo_summary, .dark_theme .todo_filters, .dark_theme .todo_list.empty p {
+  background-color: hsl(235deg, 24%, 19%);
+}
+.dark_theme .todo_inputs input::placeholder {
+  color: hsl(234deg, 39%, 85%);
+}
+.dark_theme .todo_item {
+  border-bottom: 1px solid hsl(233deg, 14%, 35%);
+}
+.dark_theme .todo_summary {
+  color: hsl(234deg, 11%, 52%);
+}
+.dark_theme .todo_summary button:hover {
+  color: hsl(234deg, 39%, 85%);
+}
+.dark_theme .todo_filters .active {
+  color: hsl(220deg, 98%, 61%);
+}
+.dark_theme .todo_filters button {
+  color: hsl(234deg, 11%, 52%);
+}
+.dark_theme .todo_filters button:hover {
+  color: hsl(234deg, 39%, 85%);
+}
+
+@media screen and (min-width: 590px) {
+  .dark_theme .todo_filters,
+.light_theme .todo_filters {
+    box-shadow: none;
+    left: 50%;
+    margin-block-start: -36px;
+    padding: 0;
+    position: absolute;
+    transform: translateX(-50%);
+  }
+}
+
+/*# sourceMappingURL=style.css.map */

@@ -1,24 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import Header from "./header";
+import Summary from "./summary";
+import TodoList from "./todoList";
+import Filters from "./filters";
 
 function App() {
+  // get data stored in sessionStorage or set to empty array
+  let storedData = JSON.parse(sessionStorage.getItem("todos")) || [];
+  let [todos, setTodos] = useState(storedData || []);
+  // A temporary variable to store todo item while user is typing
+  let [todoItem, setTodoItem] = useState({ id: "", title: "" });
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Header
+        todoItem={todoItem}
+        setTodoItem={setTodoItem}
+        todos={todos}
+        setTodos={setTodos}
+      />
+      <main>
+        <TodoList todos={todos} setTodos={setTodos} />
+        <Summary todos={todos} setTodos={setTodos} />
+        <Filters todos={todos} setTodos={setTodos} />
+      </main>
+      <footer>Drag and drop to reorder list</footer>
+    </>
   );
 }
 
