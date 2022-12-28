@@ -23,9 +23,9 @@ export default function Summary(props) {
   return (
     <>
       <article className="todo_summary">
-        <p>
-          {props.todos.length} item{props.todos.length > 1 ? "s" : ""} left
-        </p>
+        <h2>
+          {props.todos.length} item{props.todos.length !== 1 ? "s" : ""} left
+        </h2>
         <button onClick={clearCompleted}>Clear Completed</button>
       </article>
     </>

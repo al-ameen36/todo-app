@@ -47,6 +47,7 @@ export default function Todo(props) {
       draggable="true"
       onDragStart={drag}
     >
+      <h2 className="visually_hidden">todo item {props.id}</h2>
       <input
         type="checkbox"
         name={props.title}

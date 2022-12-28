@@ -50,7 +50,7 @@ export default function Header(props) {
           <div className="app_title">
             <h1>TODO</h1>
             <button id="themeToggler" onClick={changeTheme}>
-              {/* <img src="images/icon-sun.svg" alt=""> */}
+              <span className="visually_hidden">theme toggle</span>
               <img id="themeIcon" src={moonLogo} alt="" />
             </button>
           </div>

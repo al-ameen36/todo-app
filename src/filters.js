@@ -25,6 +25,7 @@ export default function Filters(props) {
 
   return (
     <article className="todo_filters">
+      <h2 className="visually_hidden">list filters</h2>
       <button onClick={filterTodos} className="active">
         All
       </button>

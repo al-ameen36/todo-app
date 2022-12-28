@@ -69,6 +69,15 @@ label {
 }
 
 /* OTHER STYLING */
+.visually_hidden {
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
 #root {
   height: 100%;
   transition: 200ms;
@@ -125,6 +134,7 @@ main {
     display: flex;
     height: 61.38px;
     justify-content: center;
+    transition: 200ms;
   }
 
   &_inputs {
@@ -213,6 +223,7 @@ input[type="checkbox"] {
 }
 
 .todo_summary,
+.todo_summary h2,
 .todo_filters {
   font-size: clamp(13px, 3vw, 14px);
 }
@@ -220,6 +231,9 @@ input[type="checkbox"] {
   border-radius: 0 0 0.3rem 0.3rem;
   display: flex;
   justify-content: space-between;
+  & h2 {
+    font-weight: normal;
+  }
 }
 
 .todo_filters {
