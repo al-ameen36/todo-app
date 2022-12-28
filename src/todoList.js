@@ -1,18 +1,17 @@
 import Todo from "./todo";
 
 export default function TodoList(props) {
-  // update sessionStorage to match the new order of items in UI
-  function updateTodoSessionIds() {
-    let newTodos = Array.from(document.querySelectorAll(".todo_item")).map(
-      (el, index) => {
+  // update todo items to match the new order of items in UI
+  function updateTodoIds() {
+    props.setTodos((prevTodos) =>
+      prevTodos.map((el, index) => {
         return {
           id: index + 1,
-          title: el.querySelector(".todo_text").textContent,
-          isCompleted: el.querySelector("input[type=checkbox]").checked,
+          title: el.title,
+          isCompleted: el.isCompleted,
         };
-      }
+      })
     );
-    sessionStorage.setItem("todos", JSON.stringify(newTodos));
   }
 
   // DRAG AND DROP
@@ -56,8 +55,8 @@ export default function TodoList(props) {
     removeHoverOutline();
     draggedElement.classList.remove("active"); // remove active class from dragged todo
 
-    // update sessionStorage to match the new order of items
-    updateTodoSessionIds();
+    // update todo items to match the new order of items
+    updateTodoIds();
   }
 
   function dragLeave() {
@@ -72,7 +71,7 @@ export default function TodoList(props) {
       title={todo.title}
       isCompleted={todo.isCompleted}
       setTodos={props.setTodos}
-      updateTodoSessionIds={updateTodoSessionIds}
+      updateTodoIds={updateTodoIds}
     />
   ));
   let todoListClassName =

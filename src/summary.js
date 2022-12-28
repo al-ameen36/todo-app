@@ -1,5 +1,5 @@
 export default function Summary(props) {
-  let sessionData = JSON.parse(sessionStorage.getItem("todos")) || [];
+  let localStorageData = JSON.parse(localStorage.getItem("todos")) || [];
 
   // highlight 'All' filter button
   function highlightFilterBtn() {
@@ -12,12 +12,7 @@ export default function Summary(props) {
     });
   }
   function clearCompleted() {
-    props.setTodos(sessionData.filter((todo) => !todo.isCompleted));
-    // update sessionStorage
-    sessionStorage.setItem(
-      "todos",
-      JSON.stringify(sessionData.filter((todo) => !todo.isCompleted))
-    );
+    props.setTodos(localStorageData.filter((todo) => !todo.isCompleted));
     highlightFilterBtn();
   }
   return (

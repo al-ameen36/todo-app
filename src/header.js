@@ -2,15 +2,15 @@ import moonLogo from "./images/icon-moon.svg";
 import sunLogo from "./images/icon-sun.svg";
 
 export default function Header(props) {
-  // get data stored in sessionStorage or set to empty array
-  let sessionData = JSON.parse(sessionStorage.getItem("todos")) || [];
+  // get data stored in localStorage or set to empty array
+  let localStorageData = JSON.parse(localStorage.getItem("todos")) || [];
 
   // keep track of input changes when user typing
   function updateTodo(e) {
-    props.setTodoItem({
-      id: sessionData.length + 1,
+    props.setTodoItem((prevTodos) => ({
+      id: props.todos.length + 1,
       title: e.target.value,
-    });
+    }));
   }
 
   function addTodo(e) {
@@ -19,11 +19,9 @@ export default function Header(props) {
     let isCompleted = document.getElementById("isCompleted");
     props.setTodos(() => {
       let newTodos = [
-        ...sessionData,
+        ...localStorageData,
         { ...props.todoItem, isCompleted: isCompleted.checked },
       ];
-      // update the sessionStorage
-      sessionStorage.setItem("todos", JSON.stringify(newTodos));
       return newTodos;
     });
     // reset the 'isComplete' checkbox

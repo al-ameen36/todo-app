@@ -2,31 +2,24 @@ import closeIcon from "./images/icon-cross.svg";
 
 export default function Todo(props) {
   // TODO FUNCTIONS
-  /* JSON.stringify is required to store objects as strings 
-    in the sessionStorage, else the string "[Object object]" is literaly stored */
   function deleteTodo(ev) {
     let id = +ev.currentTarget.parentElement.id.replace("todo-", "");
-    props.setTodos((oldTodos) => {
-      let newTodos = oldTodos.filter((todo) => todo.id !== id);
-      // also update the sessionStorage data
-      sessionStorage.setItem("todos", JSON.stringify(newTodos));
+    props.setTodos((prevTodos) => {
+      let newTodos = prevTodos.filter((todo) => todo.id !== id);
       return newTodos;
     });
-    props.updateTodoSessionIds();
+    props.updateTodoIds();
   }
 
   // update isCompleted property of the clicked todo item
   function updateIsCompleted(ev) {
-    let id = +ev.currentTarget.id.replace("todo-check-", "");
     let isCompleted = !ev.currentTarget.checked;
-    props.setTodos((oldTodos) => {
-      let newTodos = oldTodos.map((todo) => {
-        if (todo.id === id) return { ...todo, isCompleted: !isCompleted };
+    props.setTodos((prevTodos) => {
+      return prevTodos.map((todo) => {
+        if (todo.id === prevTodos.length)
+          return { ...todo, isCompleted: !isCompleted };
         else return todo;
       });
-      // also update the sessionStorage data
-      sessionStorage.setItem("todos", JSON.stringify(newTodos));
-      return newTodos;
     });
   }
 

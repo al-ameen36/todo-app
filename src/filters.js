@@ -1,6 +1,6 @@
 export default function Filters(props) {
-  // get data stored in sessionStorage or set to empty array
-  let sessionData = JSON.parse(sessionStorage.getItem("todos")) || [];
+  // get data stored in localStorage or set to empty array
+  let localStorageData = JSON.parse(localStorage.getItem("todos")) || [];
 
   function highlightFilterBtn(ev) {
     let filterButtons = Array.from(
@@ -14,10 +14,10 @@ export default function Filters(props) {
     let newTodos;
     let filterBtnText = ev.currentTarget.textContent;
     if (filterBtnText === "Active")
-      newTodos = sessionData.filter((todo) => todo.isCompleted === false);
+      newTodos = localStorageData.filter((todo) => todo.isCompleted === false);
     else if (filterBtnText === "Completed")
-      newTodos = sessionData.filter((todo) => todo.isCompleted === true);
-    else newTodos = [...sessionData];
+      newTodos = localStorageData.filter((todo) => todo.isCompleted === true);
+    else newTodos = [...localStorageData];
     props.setTodos(newTodos);
     // highlight the active filter button
     highlightFilterBtn(ev);
